@@ -7,7 +7,10 @@ public class Hacker : MonoBehaviour
 {
 
 
-    public int level;
+     int level;
+    private string password1 = "1bank4";
+    private string password2 = "1airport7";
+    private string password3 = "1spaceX6";
 
     public enum GameScreen {MainMenu, PassKey, Win };
     GameScreen CurrScreen = GameScreen.MainMenu;
@@ -29,15 +32,31 @@ public class Hacker : MonoBehaviour
         Terminal.WriteLine("Enter your choice: ");  
     }
 
-    void OnUserInput(string input)  // outer messages
+     void OnUserInput(string input)  // outer messages
     {
         if (input == "menu")
 
         {
-            MainMenu("Hello Again");
+            CurrScreen = GameScreen.MainMenu;
+            level = 0;
+            MainMenu("Hello Again, Stranger");
         }
 
-        else if (input == "1")
+        else if (CurrScreen == GameScreen.MainMenu)
+        {
+            NewRunMenu(input);
+        }
+
+        else if(CurrScreen == GameScreen.PassKey)
+        {
+            KeyRun(input);
+        }
+
+    }
+
+    void NewRunMenu(string input)
+    {
+        if (input == "1")
             
         {
             level = 1;
@@ -61,14 +80,42 @@ public class Hacker : MonoBehaviour
 
         else
         {
-                Terminal.WriteLine("please choose valid level !");
+            Terminal.WriteLine("Enter the valid level!");
+        }
+    }
+
+    void Gamestart()
+    {
+        Terminal.WriteLine("you have selected level :  " + level);
+        Terminal.WriteLine("Enter your Password : ");
+
+      
+    }
+
+    void KeyRun(string input)
+    {
+        if(input == password1)
+        {
+            Terminal.WriteLine("good job");
+        }
+        else if (input == password2)
+        {
+            Terminal.WriteLine("very good job");
+        }
+        else if  (input == password3)
+        {
+            Terminal.WriteLine("excellent job");
+        }
+
+        else
+        {
+            Terminal.WriteLine("Try again:");
         }
 
     }
-
-     void Gamestart()
-    {
-        Terminal.WriteLine("you have chosen " + level);
-        Terminal.WriteLine("Enter your Password");
-    }
+ 
 }
+
+
+
+
