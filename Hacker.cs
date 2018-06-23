@@ -7,7 +7,8 @@ public class Hacker : MonoBehaviour
     string[] Level2_passwordsAirport = {"Pilots","CrewControl","BookTickets","FlightDatabase","LightSignal"  };
     string[] Level3_passwordsSpaceX = { "MuskBankAccount","SatelliteSignal","Tesla","RocketControl","Connections" };
 
-     int level;
+    const string Hint_Menu = "Type Menu if you are afraid";
+    int level;
     string password1, password2, password3;
     public enum GameScreen {MainMenu, PassKey, Win };
     GameScreen CurrScreen = GameScreen.MainMenu;
@@ -39,6 +40,11 @@ public class Hacker : MonoBehaviour
             MainMenu("Hello Again, Stranger");
         }
 
+        else if (input=="exit" ||input == "close"||input == "quit")
+        {
+            Application.Quit();
+        }
+
         else if (CurrScreen == GameScreen.MainMenu)
         {
             NewRunMenu(input);
@@ -59,7 +65,9 @@ public class Hacker : MonoBehaviour
             level = 1;
             password1 = Level1_passwordsBank[Random.Range(0,Level1_passwordsBank.Length)];
             CurrScreen = GameScreen.PassKey;
-            Gamestart();
+            Terminal.WriteLine("Enter your Password - Hint : " + password1.Anagram());
+            Terminal.WriteLine(Hint_Menu);
+      //      Gamestart();
         }
         else if (input == "2")
 
@@ -67,7 +75,10 @@ public class Hacker : MonoBehaviour
             level = 2;
             password2 = Level2_passwordsAirport[Random.Range(0,Level2_passwordsAirport.Length)];
             CurrScreen = GameScreen.PassKey;
-            Gamestart();
+            Terminal.WriteLine("Enter your Password - Hint : " + password2.Anagram());
+            Terminal.WriteLine(Hint_Menu);
+
+            //Gamestart();
         }
         else if (input == "3")
 
@@ -75,7 +86,10 @@ public class Hacker : MonoBehaviour
             level = 3;
             password3 = Level3_passwordsSpaceX[Random.Range(0,Level3_passwordsSpaceX.Length)];
             CurrScreen = GameScreen.PassKey;
-            Gamestart();
+            Terminal.WriteLine("Enter your Password - Hint : " + password3.Anagram());
+            Terminal.WriteLine(Hint_Menu);
+
+           // Gamestart();
         }
 
         else
@@ -84,12 +98,15 @@ public class Hacker : MonoBehaviour
         }
     }
 
-    void Gamestart()
-    {
-        Terminal.WriteLine("you have selected level :  " + level);
-        Terminal.ClearScreen();
-        Terminal.WriteLine("Enter your Password : ");
-    }
+    //void Gamestart()
+    //{
+    //    //Terminal.WriteLine("you have selected level :  " + level);
+    //    //Terminal.ClearScreen();
+    //    Terminal.WriteLine("Enter your Password - Hint : " + password1.Anagram());
+    //    Terminal.WriteLine("Enter your Password - Hint : " + password2.Anagram());
+    //    Terminal.WriteLine("Enter your Password - Hint : " + password3.Anagram());
+
+    //}
 
     void KeyRun(string input)
     {
