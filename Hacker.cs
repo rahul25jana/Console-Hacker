@@ -8,7 +8,7 @@ public class Hacker : MonoBehaviour
     string[] Level3_passwordsSpaceX = { "MuskBankAccount","SatelliteSignal","Tesla","RocketControl","Connections" };
 
      int level;
-    string password;
+    string password1, password2, password3;
     public enum GameScreen {MainMenu, PassKey, Win };
     GameScreen CurrScreen = GameScreen.MainMenu;
 	// Use this for initialization
@@ -57,7 +57,7 @@ public class Hacker : MonoBehaviour
             
         {
             level = 1;
-            password = Level1_passwordsBank[Random.Range(0,Level1_passwordsBank.Length)];
+            password1 = Level1_passwordsBank[Random.Range(0,Level1_passwordsBank.Length)];
             CurrScreen = GameScreen.PassKey;
             Gamestart();
         }
@@ -65,7 +65,7 @@ public class Hacker : MonoBehaviour
 
         {
             level = 2;
-            password = Level2_passwordsAirport[Random.Range(0,Level2_passwordsAirport.Length)];
+            password2 = Level2_passwordsAirport[Random.Range(0,Level2_passwordsAirport.Length)];
             CurrScreen = GameScreen.PassKey;
             Gamestart();
         }
@@ -73,7 +73,7 @@ public class Hacker : MonoBehaviour
 
         {
             level = 3;
-            password = Level3_passwordsSpaceX[Random.Range(0,Level3_passwordsSpaceX.Length)];
+            password3 = Level3_passwordsSpaceX[Random.Range(0,Level3_passwordsSpaceX.Length)];
             CurrScreen = GameScreen.PassKey;
             Gamestart();
         }
@@ -89,32 +89,100 @@ public class Hacker : MonoBehaviour
         Terminal.WriteLine("you have selected level :  " + level);
         Terminal.ClearScreen();
         Terminal.WriteLine("Enter your Password : ");
-
-        
     }
 
     void KeyRun(string input)
     {
-        if(input == password )
+        if(input == password1 )
         {
             Terminal.WriteLine("good job");
+            ScreenWin_1();
         }
-        else if (input == password)
+        else if (input == password2)
         {
             Terminal.WriteLine("very good job");
+            ScreenWin_2();
         }
-        else if  (input == password)
+        else if  (input == password3)
         {
             Terminal.WriteLine("excellent job");
+            ScreenWin_3();
         }
-
         else
         {
             Terminal.WriteLine("Try again:");
         }
 
     }
+
+    void ScreenWin_1()
+    {
+        Terminal.ClearScreen();
+        Terminal.WriteLine("Congrats");
+        Terminal.WriteLine(@" 
+   _______________          
+  |  ___________  |        
+  | |           | |        
+  | |   0   0   | |        
+  | |     -     | |        
+  | |   \___/   | |       
+  | |___     ___| |        
+  |_____|\_/|_____|       
+    _|__|/ \|_|_.....
+   / ********** \         
+ /  ************  \  ");
+
+        CurrScreen = GameScreen.Win;
+
+    }
+
+    void ScreenWin_2()
+    {
+        Terminal.ClearScreen();
+        Terminal.WriteLine("Congrats, Very Good");
+        Terminal.WriteLine(@" 
+ __  _
+ \ `/ |
+  \__`!
+  / ,' `-.__________________
+ '-'\_____                LI`-.
+    <____()-=O=O=O=O=O=[]====--)
+      `.___ ,-----,_______...-'
+           /    .'
+          /   .'
+         /  .'         
+         `-'
+");
+
+        CurrScreen = GameScreen.Win;
+
+    }
+
+    void ScreenWin_3()
+    {
+        Terminal.ClearScreen();
+        Terminal.WriteLine("Congrats, you did excellent job");
+        Terminal.WriteLine(@" 
+           ___
+     |     | |
+    / \    | |
+   |--o|===|-|
+   |---|   |S|
+  /     \  |P|
+ |       | |A|
+ |       |=|C|
+ |       | |E|
+ |_______| |_|
+  |@| |@|  | |
+___________|_|_
+");
+
+        CurrScreen = GameScreen.Win;
+
+    }
+
  
+
 }
 
 
