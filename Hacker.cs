@@ -1,17 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Hacker : MonoBehaviour
 {
 
+    string[] Level1_passwordsBank = { "Systems","Cameras","BankVault","Locker","ATM" };
+    string[] Level2_passwordsAirport = {"Pilots","CrewControl","BookTickets","FlightDatabase","LightSignal"  };
+    string[] Level3_passwordsSpaceX = { "MuskBankAccount","SatelliteSignal","Tesla","RocketControl","Connections" };
 
      int level;
-    private string password1 = "1bank4";
-    private string password2 = "1airport7";
-    private string password3 = "1spaceX6";
-
+    string password;
     public enum GameScreen {MainMenu, PassKey, Win };
     GameScreen CurrScreen = GameScreen.MainMenu;
 	// Use this for initialization
@@ -60,6 +57,7 @@ public class Hacker : MonoBehaviour
             
         {
             level = 1;
+            password = Level1_passwordsBank[Random.Range(0,Level1_passwordsBank.Length)];
             CurrScreen = GameScreen.PassKey;
             Gamestart();
         }
@@ -67,6 +65,7 @@ public class Hacker : MonoBehaviour
 
         {
             level = 2;
+            password = Level2_passwordsAirport[Random.Range(0,Level2_passwordsAirport.Length)];
             CurrScreen = GameScreen.PassKey;
             Gamestart();
         }
@@ -74,6 +73,7 @@ public class Hacker : MonoBehaviour
 
         {
             level = 3;
+            password = Level3_passwordsSpaceX[Random.Range(0,Level3_passwordsSpaceX.Length)];
             CurrScreen = GameScreen.PassKey;
             Gamestart();
         }
@@ -87,22 +87,23 @@ public class Hacker : MonoBehaviour
     void Gamestart()
     {
         Terminal.WriteLine("you have selected level :  " + level);
+        Terminal.ClearScreen();
         Terminal.WriteLine("Enter your Password : ");
 
-      
+        
     }
 
     void KeyRun(string input)
     {
-        if(input == password1)
+        if(input == password )
         {
             Terminal.WriteLine("good job");
         }
-        else if (input == password2)
+        else if (input == password)
         {
             Terminal.WriteLine("very good job");
         }
-        else if  (input == password3)
+        else if  (input == password)
         {
             Terminal.WriteLine("excellent job");
         }
